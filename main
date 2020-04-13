@@ -1,0 +1,37 @@
+from twitter import Twitter
+
+consumer_key = "##SUA CONSUMER KEY##"
+consumer_secret = "##SEU CONSUMER SECRET##"
+
+token_key = "##SEU TOKEN KEY##"
+token_secret = "##SEU TOKEN SECRET##"
+
+twitter = Twitter(consumer_key, consumer_secret, token_key, token_secret)
+
+while True:
+    escolha = input("Você deseja tweetar, pesquisar ou sair do programa? ").lower()
+
+    if escolha == "tweetar":
+        print("")
+        twitter.tweet(input("Digite o que deseja tweetar: "))
+        print("")
+        print("Você tweetou com sucesso.")
+        print("")
+    elif escolha == "pesquisar":
+        print("")
+        pesquisa = twitter.search(input("Digite o que deseja pesquisar: "), "pt")
+        print("")
+        print("Esses foram os últimos tweets envolvendo sua pesquisa:")
+        print("")
+        for resultado in pesquisa:
+            print(resultado["user"]["screen_name"])
+            print(resultado["text"])
+            print("")
+
+    elif escolha == "sair":
+        exit()
+
+    else:
+        print("")
+        print("Digite apenas tweetar, pesquisar ou sair.")
+        print("")
